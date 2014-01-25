@@ -2,26 +2,27 @@
 using System.Collections;
 
 public class Enemy : MonoBehaviour {
-	GameObject player;
-	// Use this for initialization
+	public GameObject target;
+
 	void Start () {
-		player = GameObject.FindGameObjectWithTag ("Player");
+		//target = GameObject.FindGameObjectWithTag("Player");
 	}
 
 	void FixedUpdate() {
-		rigidbody2D.velocity = transform.right * 5f;
+		if (target)
+			rigidbody2D.velocity = transform.right * 5f;
 	}
-
-	// Update is called once per frame
+	
 	void Update () {
-		//Debug.Log (Vector2.MoveTowards (transform.position, player.transform.position, 5));
-		//transform.LookAt(player.transform.position);
-		//Vector3 test = Vector3.MoveTowards(transform.position, target.position, step);
-
-		Quaternion targetRot = Quaternion.LookRotation(transform.forward, player.transform.position - transform.position);
-
-		Quaternion inter = Quaternion.Slerp (transform.rotation, targetRot, 5 * Time.deltaTime);
-
-		transform.rotation = Quaternion.Euler(inter.eulerAngles + new Vector3(0, 0, 90f));
+		if (target) {
+			float rotationAngle = (Mathf.Atan2 (target.transform.position.y - transform.position.y, target.transform.position.x - transform.position.x) * Mathf.Rad2Deg);
+			transform.rotation = Quaternion.Euler (new Vector3 (0f, 0f, rotationAngle));
+		}
 	}
+
+	//void OnCollisionStay2D(Collision2D collision) {
+	//	Debug.Log ("Collided");
+	//}
+
+
 }

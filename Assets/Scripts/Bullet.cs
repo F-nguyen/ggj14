@@ -10,12 +10,12 @@ public class Bullet : MonoBehaviour {
 		//rigidbody2D.velocity = transform.right * speed;// movementDirection; //* speed;
 		rigidbody2D.velocity = movementDirection * speed;
 	}
-
-
+	
 	void OnTriggerEnter2D(Collider2D collider) {
 		if (collider.gameObject.tag == "Enemy") {
 			Destroy(collider.gameObject);
 			Destroy(gameObject);
 		}
 	}
+
 }
