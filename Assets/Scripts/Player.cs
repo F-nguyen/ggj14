@@ -21,6 +21,15 @@ public class Player : MonoBehaviour
 		InputDevice device = InputManager.ActiveDevice;
 		Debug.Log (device.Direction.x);
 		Debug.Log (device.Direction.y);
+
+		//Debug.Log (device.Direction.sqrMagnitude);
+
+		//if (device.Direction.x != 0f && device.Direction.y != 0f) {
+		//	transform.rotation = Quaternion.LookRotation(device.Direction, Vector2.up);
+		//}
+		//Debug.Log (Mathf.Atan2(device.Direction.y, device.Direction.x));
+		float rotationAngle = (Mathf.Atan2 (device.Direction.y, device.Direction.x) * Mathf.Rad2Deg);
+		Debug.Log (rotationAngle);
 		Debug.Log ("------");
 		// Pass all parameters to the character control script.
 		Move(device.Direction);
