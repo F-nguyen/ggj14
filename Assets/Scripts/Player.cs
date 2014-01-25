@@ -42,8 +42,10 @@ public class Player : MonoBehaviour
 		Vector2 rightStick = device.RightStickVector;
 		if (rightStick != Vector2.zero) {
 			if (shootCounter >= shootDelay) {
-				Bullet bulletComponent = (Instantiate(bullet, transform.position, Quaternion.identity) as GameObject).GetComponent<Bullet>();
-				bulletComponent.movementDirection = rightStick.normalized;
+				float bulletRotation = (Mathf.Atan2 (rightStick.y, rightStick.x) * Mathf.Rad2Deg);
+				Bullet bulletComponent = (Instantiate(bullet, transform.position, Quaternion.Euler(new Vector3(0f, 0f, bulletRotation))) as GameObject).GetComponent<Bullet>();
+				//bulletComponent.movementDirection = rightStick.normalized;
+
 				shootCounter = 0f;
 			}
 		}

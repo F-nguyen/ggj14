@@ -7,8 +7,8 @@ public class Bullet : MonoBehaviour {
 
 	void FixedUpdate()
 	{
-		//rigidbody2D.velocity = transform.right * speed;// movementDirection; //* speed;
-		rigidbody2D.velocity = movementDirection * speed;
+		rigidbody2D.velocity = transform.right * speed;
+		//rigidbody2D.velocity = movementDirection * speed;
 	}
 	
 	void OnTriggerEnter2D(Collider2D collider) {
