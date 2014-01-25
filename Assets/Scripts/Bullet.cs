@@ -2,12 +2,13 @@
 using System.Collections;
 
 public class Bullet : MonoBehaviour {
-	public Vector2 movementDirection = new Vector2(0, 0);
+	public Vector3 movementDirection = new Vector2(0, 0);
 	public float speed = 5f;
 
 	void FixedUpdate()
 	{
-		rigidbody2D.velocity = movementDirection * 5;
+		//rigidbody2D.velocity = transform.right * speed;// movementDirection; //* speed;
+		rigidbody2D.velocity = movementDirection * speed;
 	}
 
 
