@@ -4,15 +4,18 @@ using InControl;
 public class Player : MonoBehaviour 
 {
 	public GameObject bullet;
+	public float shootDelay = 0.25f;
 
 	[SerializeField] float maxSpeed = 10f;				// The fastest the player can travel in the x axis.
 
 	Animator animator;									// Reference to the player's animator component.
 
 	float rotationAngle = 0f;
+	float shootCounter = 0f;
 
 	void Awake()
 	{
+		shootCounter = shootDelay;
 		animator = GetComponent<Animator>();
 	}
 	
@@ -35,10 +38,14 @@ public class Player : MonoBehaviour
 		transform.rotation = Quaternion.Euler(new Vector3(0f, 0f, rotationAngle));
 
 		// Handle Shooting
+		shootCounter += Time.deltaTime;
 		Vector2 rightStick = device.RightStickVector;
 		if (rightStick != Vector2.zero) {
-			Bullet bulletComponent = (Instantiate(bullet, transform.position, Quaternion.identity) as GameObject).GetComponent<Bullet>();
-			bulletComponent.movementDirection = rightStick.normalized;
+			if (shootCounter >= shootDelay) {
+				Bullet bulletComponent = (Instantiate(bullet, transform.position, Quaternion.identity) as GameObject).GetComponent<Bullet>();
+				bulletComponent.movementDirection = rightStick.normalized;
+				shootCounter = 0f;
+			}
 		}
 	}
 	
