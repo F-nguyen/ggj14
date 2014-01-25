@@ -18,22 +18,21 @@ public class Player : MonoBehaviour
 		// Set the vertical animation
 		//anim.SetFloat("vSpeed", rigidbody2D.velocity.y);
 
-		// Read the inputs.
-		//bool crouch = Input.GetKey(KeyCode.LeftControl);
-		//float h = CrossPlatformInput.GetAxis("Horizontal");
 		InputDevice device = InputManager.ActiveDevice;
-		Debug.Log (device);
+		Debug.Log (device.Direction.x);
+		Debug.Log (device.Direction.y);
+		Debug.Log ("------");
 		// Pass all parameters to the character control script.
-		//Move(h);
+		Move(device.Direction);
 	}
 	
 	
-	public void Move(float move)
+	public void Move(Vector2 movement)
 	{
 		// The Speed animator parameter is set to the absolute value of the horizontal input.
 		//anim.SetFloat("Speed", Mathf.Abs(move));
 		
 		// Move the character
-		rigidbody2D.velocity = new Vector2(move * maxSpeed, rigidbody2D.velocity.y);
+		rigidbody2D.velocity = movement * maxSpeed;
 	}
 }
