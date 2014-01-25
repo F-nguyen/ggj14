@@ -3,6 +3,8 @@ using InControl;
 
 public class Player : MonoBehaviour 
 {
+	public GameObject bullet;
+
 	[SerializeField] float maxSpeed = 10f;				// The fastest the player can travel in the x axis.
 
 	Animator animator;									// Reference to the player's animator component.
@@ -17,28 +19,11 @@ public class Player : MonoBehaviour
 	
 	void FixedUpdate()
 	{
-		// Set the vertical animation
-
-
-
 		InputDevice device = InputManager.ActiveDevice;
-		//Debug.Log (device.Direction.x);
-		//Debug.Log (device.Direction.y);
 
-		//Debug.Log (device.Direction.sqrMagnitude);
-
-		//if (device.Direction.x != 0f && device.Direction.y != 0f) {
-		//	transform.rotation = Quaternion.LookRotation(device.Direction, Vector2.up);
-		//}
-		//Debug.Log (Mathf.Atan2(device.Direction.y, device.Direction.x));
-		//float rotationAngle = (Mathf.Atan2 (device.Direction.y, device.Direction.x) * Mathf.Rad2Deg);
-		//transform.rotation = Quaternion.Euler(new Vector3(0f, 0f, rotationAngle));
-		//Debug.Log (rotationAngle);
-		//Debug.Log ("------");
-		// Pass all parameters to the character control script.
 		Move(device.Direction);
 
-		Debug.Log (rigidbody2D.velocity.sqrMagnitude);
+		//Debug.Log (rigidbody2D.velocity.sqrMagnitude);
 		animator.SetFloat("Speed", rigidbody2D.velocity.sqrMagnitude);
 	}
 
@@ -48,6 +33,13 @@ public class Player : MonoBehaviour
 			rotationAngle = (Mathf.Atan2 (device.Direction.y, device.Direction.x) * Mathf.Rad2Deg);
 
 		transform.rotation = Quaternion.Euler(new Vector3(0f, 0f, rotationAngle));
+
+		// Handle Shooting
+		Vector2 rightStick = device.RightStickVector;
+		if (rightStick != Vector2.zero) {
+			Bullet bulletComponent = (Instantiate(bullet, transform.position, Quaternion.identity) as GameObject).GetComponent<Bullet>();
+			bulletComponent.movementDirection = rightStick.normalized;
+		}
 	}
 	
 	
