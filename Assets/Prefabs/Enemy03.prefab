@@ -84,7 +84,7 @@ CircleCollider2D:
   m_Enabled: 1
   m_Material: {fileID: 0}
   m_IsTrigger: 1
-  m_Radius: 4
+  m_Radius: 10
   m_Center: {x: 0, y: 0}
 --- !u!58 &5800002
 CircleCollider2D:
@@ -137,7 +137,7 @@ MonoBehaviour:
   target: {fileID: 0}
   chasing: 0
   shootDelay: 1
-  bullet: {fileID: 0}
+  bullet: {fileID: 11400000, guid: 7eb693b3fcae64f99b8beef27e32ec1b, type: 2}
   attackingBase: 0
 --- !u!212 &21200000
 SpriteRenderer:
