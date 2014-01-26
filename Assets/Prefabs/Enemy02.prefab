@@ -126,6 +126,9 @@ MonoBehaviour:
   chasing: 0
   shootDelay: .25
   bullet: {fileID: 11400000, guid: edfe44e7d60854cf98a0db3590343f4a, type: 2}
+  attackingBase: 0
+  explosion: {fileID: 100000, guid: 766f1a8ab593649e294bcb1db2e60ec6, type: 2}
+  health: 1
 --- !u!114 &11400002
 MonoBehaviour:
   m_ObjectHideFlags: 1

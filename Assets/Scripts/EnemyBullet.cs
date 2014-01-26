@@ -23,7 +23,8 @@ public class EnemyBullet : MonoBehaviour {
 		}
 
 		if (collider.gameObject.tag == "Enemy" && collider.gameObject != creator) {
-			Destroy(collider.gameObject);
+			//Destroy(collider.gameObject);
+			collider.gameObject.SendMessage("Hit", 1);
 			Destroy(gameObject);
 		}
 	}

@@ -139,6 +139,8 @@ MonoBehaviour:
   shootDelay: 1
   bullet: {fileID: 11400000, guid: 7eb693b3fcae64f99b8beef27e32ec1b, type: 2}
   attackingBase: 0
+  explosion: {fileID: 100000, guid: aed02f33e11114218b991d46c54e059b, type: 2}
+  health: 2
 --- !u!212 &21200000
 SpriteRenderer:
   m_ObjectHideFlags: 1

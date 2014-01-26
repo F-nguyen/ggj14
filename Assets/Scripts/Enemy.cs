@@ -7,6 +7,8 @@ public class Enemy : MonoBehaviour {
 	public float shootDelay = 1f;
 	public EnemyBullet bullet;
 	public bool attackingBase = false;
+	public GameObject explosion;
+	public int health = 25;
 
 	float shootCounter;
 	GameObject mainTarget;
@@ -54,5 +56,13 @@ public class Enemy : MonoBehaviour {
 		//	target = mainTarget;
 		//	gameObject.GetComponentInChildren<EnemyRange>().enabled = false;
 		//}
+	}
+
+	void Hit(int damage) {
+		health -= damage;
+		if (health <= 0) {
+			Instantiate(explosion, transform.position, Quaternion.identity);
+			Destroy(gameObject);
+		}
 	}
 }
