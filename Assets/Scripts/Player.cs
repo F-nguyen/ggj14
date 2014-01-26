@@ -5,7 +5,7 @@ public class Player : MonoBehaviour
 {
 	public GameObject bullet;
 	public float shootDelay = 0.25f;
-	public int health = 25;
+	public int health = 10;
 	[SerializeField] float maxSpeed = 10f;				// The fastest the player can travel in the x axis.
 
 	Animator animator;									// Reference to the player's animator component.
@@ -45,7 +45,7 @@ public class Player : MonoBehaviour
 		if (rightStick != Vector2.zero) {
 			if (shootCounter >= shootDelay) {
 				float bulletRotation = (Mathf.Atan2 (rightStick.y, rightStick.x) * Mathf.Rad2Deg);
-				Bullet bulletComponent = (Instantiate(bullet, transform.position, Quaternion.Euler(new Vector3(0f, 0f, bulletRotation))) as GameObject).GetComponent<Bullet>();
+				Instantiate(bullet, transform.position, Quaternion.Euler(new Vector3(0f, 0f, bulletRotation)));
 				//bulletComponent.movementDirection = rightStick.normalized;
 
 				shootCounter = 0f;
@@ -54,8 +54,7 @@ public class Player : MonoBehaviour
 	}
 	
 	
-	public void Move(Vector2 movement)
-	{
+	public void Move(Vector2 movement) {
 		// The Speed animator parameter is set to the absolute value of the horizontal input.
 		//anim.SetFloat("Speed", Mathf.Abs(move));
 		
@@ -65,10 +64,11 @@ public class Player : MonoBehaviour
 
 	public void Hit(int damage) {
 		health -= damage;
-		int hitState = Animator.StringToHash ("Base Layer.Hit");
-		//animator.SetBool ("Hit", true);
 		animator.Play ("Hit");
+	}
 
+	public void BoostHealth() {
+		health = 100000;
 	}
 
 	void OnGUI () {

@@ -536,7 +536,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   bullet: {fileID: 100000, guid: e9742d93ee3934c9fa2264e5490c61e8, type: 2}
   shootDelay: .100000001
-  health: 25
+  health: 10
   maxSpeed: 10
 --- !u!58 &421190088
 CircleCollider2D:
@@ -704,7 +704,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 88681e44f9bec483598ad50ca6ca4bee, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  health: 1000000
+  health: 500
 --- !u!1001 &602849477
 Prefab:
   m_ObjectHideFlags: 0
@@ -821,10 +821,10 @@ Transform:
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
-  - {fileID: 1350938699}
-  - {fileID: 80463064}
-  - {fileID: 2020012829}
   - {fileID: 1677337243}
+  - {fileID: 80463064}
+  - {fileID: 1350938699}
+  - {fileID: 2020012829}
   m_Father: {fileID: 0}
 --- !u!1001 &1070371133
 Prefab:
@@ -864,10 +864,6 @@ Prefab:
     - target: {fileID: 100000, guid: 98f0fe7fb2627462b89fd7945d38d837, type: 2}
       propertyPath: m_Name
       value: Base
-      objectReference: {fileID: 0}
-    - target: {fileID: 11400000, guid: 98f0fe7fb2627462b89fd7945d38d837, type: 2}
-      propertyPath: health
-      value: 1000000
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 98f0fe7fb2627462b89fd7945d38d837, type: 2}

@@ -2,7 +2,7 @@
 using System.Collections;
 
 public class Base : MonoBehaviour {
-	public int health = 10000;
+	public int health = 500;
 	private GameObject gameController;
 
 	// Use this for initialization
@@ -25,5 +25,9 @@ public class Base : MonoBehaviour {
 			gameController.SendMessage("BaseDestroyed");
 			Destroy (gameObject);
 		}
+	}
+
+	void BoostHealth() {
+		health = 100000;
 	}
 }
