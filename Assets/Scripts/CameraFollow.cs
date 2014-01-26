@@ -17,7 +17,9 @@ public class CameraFollow : MonoBehaviour {
 	
 	// Update is called once per frame
 	void FixedUpdate () {
-		//transform.position = Vector3.SmoothDamp(transform.position, target.position + Vector3.forward * offsetZ, ref currentVelocity, damping);
-		transform.position = target.position + Vector3.forward * offsetZ; //Vector3.SmoothDamp(transform.position, target.position + Vector3.forward * offsetZ, ref currentVelocity, damping);
+		if (target != null) {
+			//transform.position = Vector3.SmoothDamp(transform.position, target.position + Vector3.forward * offsetZ, ref currentVelocity, damping);
+			transform.position = target.position + Vector3.forward * offsetZ; //Vector3.SmoothDamp(transform.position, target.position + Vector3.forward * offsetZ, ref currentVelocity, damping);
+		}
 	}
 }

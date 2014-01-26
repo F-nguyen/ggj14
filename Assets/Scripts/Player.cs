@@ -12,7 +12,7 @@ public class Player : MonoBehaviour
 
 	float rotationAngle = 0f;
 	float shootCounter = 0f;
-
+	bool dead = false;
 	void Awake()
 	{
 		shootCounter = shootDelay;
@@ -22,33 +22,36 @@ public class Player : MonoBehaviour
 	
 	void FixedUpdate()
 	{
-		InputDevice device = InputManager.ActiveDevice;
+		if (!dead) {
+			InputDevice device = InputManager.ActiveDevice;
 
-		Move(device.Direction);
+			Move (device.Direction);
 
-		//Debug.Log (rigidbody2D.velocity.sqrMagnitude);
-		animator.SetBool ("Hit", false);
-		animator.SetFloat("Speed", rigidbody2D.velocity.sqrMagnitude);
+			//Debug.Log (rigidbody2D.velocity.sqrMagnitude);
+			animator.SetBool ("Hit", false);
+			animator.SetFloat ("Speed", rigidbody2D.velocity.sqrMagnitude);
+		}
 	}
 
 	public void Update() {
+		if (!dead) {
+			InputDevice device = InputManager.ActiveDevice;
+			if (device.Direction != Vector2.zero)
+				rotationAngle = (Mathf.Atan2 (device.Direction.y, device.Direction.x) * Mathf.Rad2Deg);
 
-		InputDevice device = InputManager.ActiveDevice;
-		if (device.Direction != Vector2.zero)
-			rotationAngle = (Mathf.Atan2 (device.Direction.y, device.Direction.x) * Mathf.Rad2Deg);
+			transform.rotation = Quaternion.Euler(new Vector3(0f, 0f, rotationAngle));
 
-		transform.rotation = Quaternion.Euler(new Vector3(0f, 0f, rotationAngle));
+			// Handle Shooting
+			shootCounter += Time.deltaTime;
+			Vector2 rightStick = device.RightStickVector;
+			if (rightStick != Vector2.zero) {
+				if (shootCounter >= shootDelay) {
+					float bulletRotation = (Mathf.Atan2 (rightStick.y, rightStick.x) * Mathf.Rad2Deg);
+					Instantiate(bullet, transform.position, Quaternion.Euler(new Vector3(0f, 0f, bulletRotation)));
+					//bulletComponent.movementDirection = rightStick.normalized;
 
-		// Handle Shooting
-		shootCounter += Time.deltaTime;
-		Vector2 rightStick = device.RightStickVector;
-		if (rightStick != Vector2.zero) {
-			if (shootCounter >= shootDelay) {
-				float bulletRotation = (Mathf.Atan2 (rightStick.y, rightStick.x) * Mathf.Rad2Deg);
-				Instantiate(bullet, transform.position, Quaternion.Euler(new Vector3(0f, 0f, bulletRotation)));
-				//bulletComponent.movementDirection = rightStick.normalized;
-
-				shootCounter = 0f;
+					shootCounter = 0f;
+				}
 			}
 		}
 	}
@@ -64,11 +67,25 @@ public class Player : MonoBehaviour
 
 	public void Hit(int damage) {
 		health -= damage;
-		animator.Play ("Hit");
+		if (health <= 0f)
+			Death ();
+		else
+			animator.Play ("Hit");
+				
 	}
 
 	public void BoostHealth() {
 		health = 100000;
+	}
+
+	public void Death() {
+		dead = true;
+		GameObject.FindWithTag("GameController").SendMessage("BaseDestroyed");
+		animator.Play ("Explosion");
+	}
+
+	public void DestroyPlayer() {
+		Destroy(gameObject);
 	}
 
 	void OnGUI () {
