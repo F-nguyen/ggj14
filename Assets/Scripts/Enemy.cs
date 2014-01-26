@@ -19,7 +19,7 @@ public class Enemy : MonoBehaviour {
 	}
 
 	void FixedUpdate() {
-		if (target)
+		if (target && !attackingBase)
 			rigidbody2D.velocity = transform.right * 5f;
 	}
 	
@@ -32,11 +32,14 @@ public class Enemy : MonoBehaviour {
 		// Handle shooting.
 		shootCounter -= Time.deltaTime;
 		if (chasing) {
+			if (target == null) {
+				target = mainTarget;
+			}
 			if (shootCounter <= 0f) {
 				shootCounter = shootDelay;
 				float bulletRotation = (Mathf.Atan2 (target.transform.position.y - transform.position.y, target.transform.position.x - transform.position.x) * Mathf.Rad2Deg);
-				EnemyBullet bulletComponent = (Instantiate (bullet, transform.position, Quaternion.Euler (new Vector3 (0f, 0f, bulletRotation))) as GameObject).GetComponent<EnemyBullet> ();
-				//bulletComponent.movementDirection = rightStick.normalized;
+				EnemyBullet bulletComponent = Instantiate(bullet, transform.position, Quaternion.Euler (new Vector3 (0f, 0f, bulletRotation))) as EnemyBullet;
+				bulletComponent.creator = gameObject;
 			}
 		} else {
 			if (target != mainTarget)
@@ -45,12 +48,12 @@ public class Enemy : MonoBehaviour {
 	}
 
 	void OnCollisionEnter2D(Collision2D collision) {
-		if (collision.gameObject.tag == "MainTarget") {
-			chasing = true;
-			attackingBase = true;
-			target = mainTarget;
-			gameObject.GetComponentInChildren<EnemyRange>().enabled = false;
-		}
+		//if (collision.gameObject.tag == "MainTarget") {
+		//	chasing = true;
+		//	attackingBase = true;
+		//	target = mainTarget;
+		//	gameObject.GetComponentInChildren<EnemyRange>().enabled = false;
+		//}
 	}
 
 	//void OnCollisionStay2D(Collision2D collision) {

@@ -4,6 +4,7 @@ using System.Collections;
 public class EnemyBullet : MonoBehaviour {
 	public Vector3 movementDirection = new Vector2(0, 0);
 	public float speed = 5f;
+	public GameObject creator;
 
 	void FixedUpdate()
 	{
@@ -12,6 +13,15 @@ public class EnemyBullet : MonoBehaviour {
 	
 	void OnTriggerEnter2D(Collider2D collider) {
 		if (collider.gameObject.tag == "Player") {
+			Destroy(collider.gameObject);
+			Destroy(gameObject);
+		}
+		if (collider.gameObject.tag == "MainTarget") {
+			Destroy(collider.gameObject);
+			Destroy(gameObject);
+		}
+
+		if (collider.gameObject.tag == "Enemy" && collider.gameObject != creator) {
 			Destroy(collider.gameObject);
 			Destroy(gameObject);
 		}

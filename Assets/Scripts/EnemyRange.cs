@@ -35,6 +35,18 @@ public class EnemyRange : MonoBehaviour {
 			enemy.target = collider.gameObject;
 			enemy.chasing = true;
 		}
+		if (!enemy.attackingBase && collider.gameObject.tag == "Enemy") {
+			losingInterest = false;
+			enemy.target = collider.gameObject;
+			enemy.chasing = true;
+		}
+		if (collider.gameObject.tag == "MainTarget") {
+			enemy.chasing = true;
+			enemy.attackingBase = true;
+			enemy.target = collider.gameObject;
+			this.enabled = false;
+			//gameObject.GetComponentInChildren<EnemyRange>().enabled = false;
+		}
 	}
 	
 	void OnTriggerExit2D(Collider2D collider) {
