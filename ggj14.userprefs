@@ -1,13 +1,14 @@
 ﻿<Properties>
   <MonoDevelop.Ide.Workspace ActiveConfiguration="Debug" />
-  <MonoDevelop.Ide.Workbench ActiveDocument="Assets/Scripts/EnemyRange.cs">
+  <MonoDevelop.Ide.Workbench ActiveDocument="Assets/GameController.cs">
     <Files>
-      <File FileName="Assets/Scripts/Player.cs" Line="51" Column="4" />
-      <File FileName="Assets/Scripts/CameraFollow.cs" Line="15" Column="27" />
-      <File FileName="Assets/Scripts/Bullet.cs" Line="10" Column="50" />
-      <File FileName="Assets/Scripts/Enemy.cs" Line="9" Column="19" />
-      <File FileName="Assets/Scripts/EnemyRange.cs" Line="41" Column="31" />
-      <File FileName="Assets/Scripts/EnemyBullet.cs" Line="15" Column="24" />
+      <File FileName="Assets/Scripts/EnemyRange.cs" Line="59" Column="1" />
+      <File FileName="Assets/Scripts/Player.cs" Line="75" Column="32" />
+      <File FileName="Assets/Scripts/Enemy.cs" Line="1" Column="1" />
+      <File FileName="Assets/Scripts/EnemyBullet.cs" Line="1" Column="1" />
+      <File FileName="Assets/Scripts/Base.cs" Line="1" Column="1" />
+      <File FileName="Assets/Scripts/SpawnZone.cs" Line="1" Column="1" />
+      <File FileName="Assets/GameController.cs" Line="13" Column="4" />
     </Files>
   </MonoDevelop.Ide.Workbench>
   <MonoDevelop.Ide.DebuggingService.Breakpoints>

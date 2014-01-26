@@ -13,11 +13,12 @@ public class EnemyBullet : MonoBehaviour {
 	
 	void OnTriggerEnter2D(Collider2D collider) {
 		if (collider.gameObject.tag == "Player") {
-			Destroy(collider.gameObject);
+			collider.gameObject.SendMessage("Hit", 1);
 			Destroy(gameObject);
 		}
 		if (collider.gameObject.tag == "MainTarget") {
-			Destroy(collider.gameObject);
+			//Destroy(collider.gameObject);
+			collider.gameObject.SendMessage("Hit", 1);
 			Destroy(gameObject);
 		}
 

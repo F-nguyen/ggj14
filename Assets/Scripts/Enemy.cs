@@ -55,10 +55,4 @@ public class Enemy : MonoBehaviour {
 		//	gameObject.GetComponentInChildren<EnemyRange>().enabled = false;
 		//}
 	}
-
-	//void OnCollisionStay2D(Collision2D collision) {
-	//	Debug.Log ("Collided");
-	//}
-
-
 }

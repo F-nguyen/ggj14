@@ -5,7 +5,7 @@ public class Player : MonoBehaviour
 {
 	public GameObject bullet;
 	public float shootDelay = 0.25f;
-
+	public int health = 25;
 	[SerializeField] float maxSpeed = 10f;				// The fastest the player can travel in the x axis.
 
 	Animator animator;									// Reference to the player's animator component.
@@ -27,10 +27,12 @@ public class Player : MonoBehaviour
 		Move(device.Direction);
 
 		//Debug.Log (rigidbody2D.velocity.sqrMagnitude);
+		animator.SetBool ("Hit", false);
 		animator.SetFloat("Speed", rigidbody2D.velocity.sqrMagnitude);
 	}
 
 	public void Update() {
+
 		InputDevice device = InputManager.ActiveDevice;
 		if (device.Direction != Vector2.zero)
 			rotationAngle = (Mathf.Atan2 (device.Direction.y, device.Direction.x) * Mathf.Rad2Deg);
@@ -59,5 +61,17 @@ public class Player : MonoBehaviour
 		
 		// Move the character
 		rigidbody2D.velocity = movement * maxSpeed;
+	}
+
+	public void Hit(int damage) {
+		health -= damage;
+		int hitState = Animator.StringToHash ("Base Layer.Hit");
+		//animator.SetBool ("Hit", true);
+		animator.Play ("Hit");
+
+	}
+
+	void OnGUI () {
+		GUI.Label (new Rect (0,50,200,50), "Player Health: " + health);
 	}
 }
