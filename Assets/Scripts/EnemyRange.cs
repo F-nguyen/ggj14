@@ -23,29 +23,25 @@ public class EnemyRange : MonoBehaviour {
 			if (loseInterestCount <= 0) {
 				enemy.target = null;
 				losingInterest = false;
+				enemy.chasing = false;
 				//loseInterestCount = loseInterestTime;
 			}
 		}
 	}
 
 	void OnTriggerEnter2D(Collider2D collider) {
-		Debug.Log ("Range Trigger Entered " + collider.gameObject.name);
 		if (collider.gameObject.tag == "Player") {
 			Debug.Log("WUT");
 			losingInterest = false;
 			enemy.target = collider.gameObject;
+			enemy.chasing = true;
 		}
 	}
-	
-	//void OnTriggerStay2D(Collider2D collider) {
-	//	Debug.Log ("Triggered");
-	//}
 	
 	void OnTriggerExit2D(Collider2D collider) {
 		if (enemy.target && collider.gameObject == enemy.target) {
 			losingInterest = true;
 			loseInterestCount = loseInterestTime;
 		}
-		Debug.Log ("Range Trigger Left");
 	}
 }
