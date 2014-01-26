@@ -6,9 +6,12 @@ public class Enemy : MonoBehaviour {
 	public bool chasing = false;
 	public float shootDelay = 1f;
 	public EnemyBullet bullet;
+	public bool attackingBase = false;
 
 	float shootCounter;
 	GameObject mainTarget;
+
+
 	void Start () {
 		target = GameObject.FindGameObjectWithTag("MainTarget");
 		mainTarget = GameObject.FindGameObjectWithTag("MainTarget");
@@ -38,6 +41,15 @@ public class Enemy : MonoBehaviour {
 		} else {
 			if (target != mainTarget)
 				target = mainTarget;
+		}
+	}
+
+	void OnCollisionEnter2D(Collision2D collision) {
+		if (collision.gameObject.tag == "MainTarget") {
+			chasing = true;
+			attackingBase = true;
+			target = mainTarget;
+			gameObject.GetComponentInChildren<EnemyRange>().enabled = false;
 		}
 	}
 

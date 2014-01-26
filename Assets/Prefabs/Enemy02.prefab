@@ -29,6 +29,7 @@ GameObject:
   m_Component:
   - 4: {fileID: 400002}
   - 58: {fileID: 5800002}
+  - 114: {fileID: 11400002}
   m_Layer: 8
   m_Name: Range
   m_TagString: Untagged
@@ -122,6 +123,21 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   target: {fileID: 0}
+  chasing: 0
+  shootDelay: .25
+  bullet: {fileID: 11400000, guid: edfe44e7d60854cf98a0db3590343f4a, type: 2}
+--- !u!114 &11400002
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 100002}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 6ee346e4b28824c7f9d4b085b58f5553, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  loseInterestTime: 3
 --- !u!212 &21200000
 SpriteRenderer:
   m_ObjectHideFlags: 1

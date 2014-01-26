@@ -5,6 +5,8 @@ TagManager:
   tags:
   - Enemy
   - Bullet
+  - EnemyBullet
+  - MainTarget
   - 
   Builtin Layer 0: Default
   Builtin Layer 1: TransparentFX
@@ -39,6 +41,10 @@ TagManager:
   User Layer 30: 
   User Layer 31: 
   m_SortingLayers:
+  - name: Background
+    userID: 1
+    uniqueID: 2893606559
+    locked: 0
   - name: Default
     userID: 0
     uniqueID: 0

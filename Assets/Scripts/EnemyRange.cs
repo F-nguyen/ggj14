@@ -30,8 +30,7 @@ public class EnemyRange : MonoBehaviour {
 	}
 
 	void OnTriggerEnter2D(Collider2D collider) {
-		if (collider.gameObject.tag == "Player") {
-			Debug.Log("WUT");
+		if (!enemy.attackingBase && collider.gameObject.tag == "Player") {
 			losingInterest = false;
 			enemy.target = collider.gameObject;
 			enemy.chasing = true;
@@ -39,7 +38,7 @@ public class EnemyRange : MonoBehaviour {
 	}
 	
 	void OnTriggerExit2D(Collider2D collider) {
-		if (enemy.target && collider.gameObject == enemy.target) {
+		if (!enemy.attackingBase && enemy.target && collider.gameObject == enemy.target) {
 			losingInterest = true;
 			loseInterestCount = loseInterestTime;
 		}
